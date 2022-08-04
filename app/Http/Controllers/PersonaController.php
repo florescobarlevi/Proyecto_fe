@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Provincia;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
-class ProvinciaController extends Controller
+class PersonaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ProvinciaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Provincia  $provincia
+     * @param  \App\Models\Persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function show(Provincia $provincia)
+    public function show(Persona $persona)
     {
         //
     }
@@ -52,10 +52,10 @@ class ProvinciaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Provincia  $provincia
+     * @param  \App\Models\Persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function edit(Provincia $provincia)
+    public function edit(Persona $persona)
     {
         //
     }
@@ -64,10 +64,10 @@ class ProvinciaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Provincia  $provincia
+     * @param  \App\Models\Persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provincia $provincia)
+    public function update(Request $request, Persona $persona)
     {
         //
     }
@@ -75,16 +75,11 @@ class ProvinciaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Provincia  $provincia
+     * @param  \App\Models\Persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Provincia $provincia)
+    public function destroy(Persona $persona)
     {
         //
     }
 }
-
-    public function getProvincia()
-    {
-    return 'hola';
-    }
