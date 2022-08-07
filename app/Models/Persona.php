@@ -18,12 +18,15 @@ class Persona extends Model
 
     protected $fillable = [
         'nombre',
+        'apellido',
         'dni',
-        'barrio_id',
-        'email',
         'legajo',
-        'edad',
-        
+        'direccion',
+        'barrio_id',
+        'fecha_nacimiento',
+        'area_id',
+        'email',
+        'password',
         
     ];
 }
