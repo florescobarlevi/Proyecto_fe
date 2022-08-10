@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use App\Models\Provincia;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,17 @@ class ProvinciaController extends Controller
     public function index()
     {
         //
+
+        $provincias = Provincia::select('nombre')->get();
+
+        return response()->json($provincias); 
+
+       /**  return response()->json(
+          *  [
+            *'mensaje' => 'Listado de provincias',            
+         *   'data' => $provincias
+         *   ]
+        *);*/
     }
 
     /**
@@ -25,6 +37,13 @@ class ProvinciaController extends Controller
     public function create()
     {
         //
+        
+        //$provincias = Provincia::select('name')->get();
+        // esto es equivalente a hacerlo en myAdmin -> SELECT nombre FROM provincias;
+
+
+        //si en lugar de poner :select'name' pongo :select all() - el equivalente seria : SELECT * FROM provincias;
+        $provincias = Provincia::all();
     }
 
     /**
@@ -82,9 +101,12 @@ class ProvinciaController extends Controller
     {
         //
     }
-}
 
     public function getProvincia()
     {
-    return 'hola';
+        $client = new Client();
+        $res = $client->request('GET', 'https://apis.datos.gob.ar/georef/api/municipios?provincia=22&campos=id,nombre&max=100');
+        
+        return 'hola';
     }
+}
