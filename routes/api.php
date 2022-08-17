@@ -23,8 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/provincia', [ProvinciaController::class, 'getProvincia']);
 
-// ruta para visualizar todas las provincias registradas
-//Route::get('/provincias', [ProvinciaController::class, 'getProvincia']);
+// Ruta para visualizar todas las provincias registradas en la base de datos
+Route::get('/provincias', [ProvinciaController::class, 'index']);
 
-
+Route::post('/insert-provincias', [ProvinciaController::class, 'store']);
 //ruta para el registro de una provincia en la base de datos

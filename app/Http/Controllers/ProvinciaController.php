@@ -15,9 +15,7 @@ class ProvinciaController extends Controller
      */
     public function index()
     {
-        //
-
-        $provincias = Provincia::select('nombre')->get();
+        $provincias = Provincia::all();
 
         return response()->json($provincias); 
 
@@ -36,8 +34,6 @@ class ProvinciaController extends Controller
      */
     public function create()
     {
-        //
-        
         //$provincias = Provincia::select('name')->get();
         // esto es equivalente a hacerlo en myAdmin -> SELECT nombre FROM provincias;
 
@@ -54,7 +50,17 @@ class ProvinciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $provincia = Provincia::create([
+            'nombre' => $request['nombre'],
+            'indec_id' => $request['indec']
+            
+        ]);
+
+        return response ([
+            'mensaje' => 'La provincia se agrego correctamente',
+            'data' => $provincia
+        ]);
     }
 
     /**

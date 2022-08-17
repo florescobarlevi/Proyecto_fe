@@ -17,6 +17,7 @@ class Provincia extends Model
     protected $connection = 'mysql';
 
     protected $fillable = [
-        'nombre'
+        'nombre',
+        'indec_id'
     ];
 }
