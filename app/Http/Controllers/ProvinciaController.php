@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use App\Models\Provincia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactEmail;
+use App\Mail\ListadoEmail;
 
 class ProvinciaController extends Controller
 {
@@ -16,6 +19,13 @@ class ProvinciaController extends Controller
     public function index()
     {
         $provincias = Provincia::all();
+
+        $details = [
+            'title' => 'Listado enviado: ',
+            'body' => $provincias
+            ];
+
+            Mail::to('florenciaescobarlevi@gmail.com')->send(new ListadoEmail($details));
 
         return response()->json($provincias); 
 
@@ -57,6 +67,13 @@ class ProvinciaController extends Controller
             
         ]);
 
+        $details = [
+            'title' => 'Se ha registrado una nueva provincia: ',
+            'body' => $provincia->nombre
+            ];
+
+            Mail::to('florenciaescobarlevi@gmail.com')->send(new ContactEmail($details));
+
         return response ([
             'mensaje' => 'La provincia se agrego correctamente',
             'data' => $provincia
@@ -92,9 +109,19 @@ class ProvinciaController extends Controller
      * @param  \App\Models\Provincia  $provincia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provincia $provincia)
+    public function update(Request $request, int $id)
     {
-        //
+        $provincia = Provincia::findOrFail($id);
+
+        $provincia -> nombre = $request ['nombre'];
+
+        $provincia -> save(); 
+
+        return response()->json([
+            'mensaje' => 'la actualizacion fue realizada correctamente',
+            'data' =>$provincia
+        ]);
+
     }
 
     /**
@@ -103,9 +130,16 @@ class ProvinciaController extends Controller
      * @param  \App\Models\Provincia  $provincia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Provincia $provincia)
+    public function destroy(int $id)
     {
-        //
+        $provincia = Provincia::findOrFail($id);
+
+        $provincia -> delete();
+
+        return response()->json([
+            'mensaje' => 'se haeliminado la provincia correctamente',
+            'data' => $provincia
+        ]);
     }
 
     public function getProvincia()
