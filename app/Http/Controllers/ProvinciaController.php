@@ -120,7 +120,7 @@ class ProvinciaController extends Controller
         return response()->json([
             'mensaje' => 'la actualizacion fue realizada correctamente',
             'data' =>$provincia
-        ]);
+        ], 200);
 
     }
 
