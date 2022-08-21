@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use App\Models\Provincia;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Mail;
-//use App\Mail\ContactEmail;
-//use App\Mail\ListadoEmail;
 
 class ProvinciaController extends Controller
 {
@@ -19,17 +16,11 @@ class ProvinciaController extends Controller
     public function index()
     {
         $provincias = Provincia::all();
-
-       // $details = [
-       //     'title' => 'Listado enviado: ',
-       //     'body' => $provincias
-       //     ];
-
-       //     Mail::to('florenciaescobarlevi@gmail.com')->send(new ListadoEmail($details));
-
+        //es lo mismo : $provincias = Provincia::select('nombre')->get();
+        
         return response()->json($provincias); 
 
-       /**  return response()->json(
+        /**return response()->json(
           *  [
             *'mensaje' => 'Listado de provincias',            
          *   'data' => $provincias
@@ -61,23 +52,14 @@ class ProvinciaController extends Controller
     public function store(Request $request)
     {
         
-        //$provincia = Provincia::create([
-      //      'nombre' => $request['nombre'],
-       //     'indec_id' => $request['indec']
-            
-       // ]);
+        $provincia = Provincia::create([
+            'nombre' => $request['nombre'],
+        ]);
 
-       // $details = [
-       //     'title' => 'Se ha registrado una nueva provincia: ',
-       //     'body' => $provincia->nombre
-       //     ];
-
-      //      Mail::to('florenciaescobarlevi@gmail.com')->send(new ContactEmail($details));
-
-       // return response ([
-       //     'mensaje' => 'La provincia se agrego correctamente',
-       //     'data' => $provincia
-       // ]);
+        return response ([
+            'mensaje' => 'La provincia se agrego correctamente',
+            'data' => $provincia
+        ]);
     }
 
     /**
@@ -109,20 +91,10 @@ class ProvinciaController extends Controller
      * @param  \App\Models\Provincia  $provincia
      * @return \Illuminate\Http\Response
      */
-    //**public function update(Request $request, int $id)
-   // {
-    //    $provincia = Provincia::findOrFail($id);
-
-    //    $provincia -> nombre = $request ['nombre'];
-
-    //    $provincia -> save(); 
-
-    //    return response()->json([
-     //       'mensaje' => 'la actualizacion fue realizada correctamente',
-      //      'data' =>$provincia
-       // ], 200);
-
-    //}
+    public function update(Request $request, Provincia $provincia)
+    {
+        //
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -130,17 +102,10 @@ class ProvinciaController extends Controller
      * @param  \App\Models\Provincia  $provincia
      * @return \Illuminate\Http\Response
      */
-    /**public function destroy(int $id)
+    public function destroy(Provincia $provincia)
     {
-        $provincia = Provincia::findOrFail($id);
-
-        $provincia -> delete();
-
-        return response()->json([
-            'mensaje' => 'se ha desactivado la provincia correctamente',
-            'data' => $provincia
-        ], 200);
-    }*/
+        //
+    }
 
     public function getProvincia()
     {
