@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>MundosE.com</title>
-<style type="text/css">
+  <style type="text/css">
     table, th, td {
   border: 1px solid white;
   border-collapse: collapse;
@@ -11,7 +9,9 @@
   background-color: #96D4D4;
   border-color: ##DF6666;
     }
-</style>    
+</style> 
+<head>
+<title>MundosE.com</title>
 </head>
 <body>
 <h1>{{ $details['title'] }}</h1>

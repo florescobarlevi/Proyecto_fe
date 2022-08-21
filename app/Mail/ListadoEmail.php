@@ -30,6 +30,6 @@ class ListadoEmail extends Mailable
     public function build()
     {
         return $this->subjet('Mundos E!')
-            ->view('mails.listado');
+            ->view('mail.listadoEmail');
     }
 }

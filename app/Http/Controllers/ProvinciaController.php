@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use App\Models\Provincia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactEmail;
-use App\Mail\ListadoEmail;
+//use Illuminate\Support\Facades\Mail;
+//use App\Mail\ContactEmail;
+//use App\Mail\ListadoEmail;
 
 class ProvinciaController extends Controller
 {
@@ -20,12 +20,12 @@ class ProvinciaController extends Controller
     {
         $provincias = Provincia::all();
 
-        $details = [
-            'title' => 'Listado enviado: ',
-            'body' => $provincias
-            ];
+       // $details = [
+       //     'title' => 'Listado enviado: ',
+       //     'body' => $provincias
+       //     ];
 
-            Mail::to('florenciaescobarlevi@gmail.com')->send(new ListadoEmail($details));
+       //     Mail::to('florenciaescobarlevi@gmail.com')->send(new ListadoEmail($details));
 
         return response()->json($provincias); 
 
@@ -61,23 +61,23 @@ class ProvinciaController extends Controller
     public function store(Request $request)
     {
         
-        $provincia = Provincia::create([
-            'nombre' => $request['nombre'],
-            'indec_id' => $request['indec']
+        //$provincia = Provincia::create([
+      //      'nombre' => $request['nombre'],
+       //     'indec_id' => $request['indec']
             
-        ]);
+       // ]);
 
-        $details = [
-            'title' => 'Se ha registrado una nueva provincia: ',
-            'body' => $provincia->nombre
-            ];
+       // $details = [
+       //     'title' => 'Se ha registrado una nueva provincia: ',
+       //     'body' => $provincia->nombre
+       //     ];
 
-            Mail::to('florenciaescobarlevi@gmail.com')->send(new ContactEmail($details));
+      //      Mail::to('florenciaescobarlevi@gmail.com')->send(new ContactEmail($details));
 
-        return response ([
-            'mensaje' => 'La provincia se agrego correctamente',
-            'data' => $provincia
-        ]);
+       // return response ([
+       //     'mensaje' => 'La provincia se agrego correctamente',
+       //     'data' => $provincia
+       // ]);
     }
 
     /**
@@ -109,20 +109,20 @@ class ProvinciaController extends Controller
      * @param  \App\Models\Provincia  $provincia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
-    {
-        $provincia = Provincia::findOrFail($id);
+    //**public function update(Request $request, int $id)
+   // {
+    //    $provincia = Provincia::findOrFail($id);
 
-        $provincia -> nombre = $request ['nombre'];
+    //    $provincia -> nombre = $request ['nombre'];
 
-        $provincia -> save(); 
+    //    $provincia -> save(); 
 
-        return response()->json([
-            'mensaje' => 'la actualizacion fue realizada correctamente',
-            'data' =>$provincia
-        ], 200);
+    //    return response()->json([
+     //       'mensaje' => 'la actualizacion fue realizada correctamente',
+      //      'data' =>$provincia
+       // ], 200);
 
-    }
+    //}
 
     /**
      * Remove the specified resource from storage.
@@ -130,17 +130,17 @@ class ProvinciaController extends Controller
      * @param  \App\Models\Provincia  $provincia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    /**public function destroy(int $id)
     {
         $provincia = Provincia::findOrFail($id);
 
         $provincia -> delete();
 
         return response()->json([
-            'mensaje' => 'se haeliminado la provincia correctamente',
+            'mensaje' => 'se ha desactivado la provincia correctamente',
             'data' => $provincia
-        ]);
-    }
+        ], 200);
+    }*/
 
     public function getProvincia()
     {
